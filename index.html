@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Todos</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://use.fontawesome.com/b2b5f854e9.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<h1 class="text-center">My Todos</h1>
+		<div id="todos" class="list-group" style="text-overflow: ellipsis">
+			<ul>
+
+				<li class="list-group-item" v-for='(task, index) in tasks'>
+						<a href="#">
+							<i 
+								v-on:click="task.done = !task.done" 
+								v-bind:class = "{ 'text-danger' : task.done}" 
+								class="fa fa-check-square-o"
+								>
+							</i>
+						</a>
+						<span 
+							v-on:dblclick="editTask = task" 
+							v-show="task != editTask"
+							>
+							{{ task.text }}
+						</span>
+						<input 
+							v-model="task.text" 
+							v-show="task == editTask" 
+							v-on:keyup.enter="editTask = null" 
+							type="text"
+							>
+						<a href="#" style="color: red">
+							<i v-on:click="removeTask(task)" class="fa fa-trash"></i>
+						</a>
+				</li>
+			</ul>
+
+			<form v-on:submit="addTask">
+				<input 
+					v-model="newTask" 
+					class="form-control" 
+					type="text" 
+					placeholder="I need to..." 
+					required
+				>
+			</form>
+	</div>
+	<<div>
+		<p>Hoho</p>
+	</div>
+</body>
+
+<!-- all connective JS files-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+</body>
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</html>
